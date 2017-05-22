@@ -1,0 +1,6 @@
+language: java # Specify language so travis can set some helpful defaults for us.
+sudo: false # We do not need root privileges on Travis virtual machine to build this project. Builds can be potentially slower if we did.
+install: true # We do not need to install anything before starting the build. True means do nothing in this step.
+script: "./gradlew check" # To build the project we use gradle wrapper file and use task check which runs all our tests.
+jdk: # Specify the JDK we want to use.
+- oraclejdk8
