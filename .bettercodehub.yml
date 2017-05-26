@@ -1,0 +1,11 @@
+languages: # Specify languages in which will be used.
+- java
+- javascript
+
+- name: java # Use regular expressions to ensure tests quality checks are performed separately.
+  production:
+    exclude:
+      - .*/Test/.*\.java
+  test:
+    include:
+      - .*/Test/.*\.java
