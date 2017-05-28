@@ -1,6 +1,10 @@
-language: java # Specify language so travis can set some helpful defaults for us.
-sudo: false # We do not need root privileges on Travis virtual machine to build this project. Builds can be potentially slower if we did.
-install: true # We do not need to install anything before starting the build. True means do nothing in this step.
-script: "./gradlew check" # To build the project we use gradle wrapper file and use task check which runs all our tests.
-jdk: # Specify the JDK we want to use.
+language: java
+sudo: false
+install: true
+script: "./gradlew check jacocoTestReport"
+after_success: bash <(curl -s https://codecov.io/bash) -t "${CODECOV_TOKEN}" -cF "java"
+jdk:
 - oraclejdk8
+env:
+  matrix:
+    secure: HjGrC3ytI7sesCp3hk1g0LNt/cV+ro9KepTvQJxik2w2PlzdCbx+mS8NXXjT+JAc4Rib0Q6TO8tGlWBqzcKl5ahr2wCn6wwxqR53fRDgTgEE8iBq3VB89GU4HthNzq/qNoEaX5dB2VM+Arbxi4PJxEQzC/W8C42BjnFLdtxBfhwhGO0UoUO8a5Y492WXsiIIe0z+rsh5OdJqmuMTpgl8Y2Qi8jIV/vdBfWQ344I69oG0h2Sr/BOAYV7YumhN3LBLaJcpmAhGsj7K/jpUP2CeQ+Yl28yVDv22fKHyGunxpzav+4scmGStGfZN0pnrvBM2VCJLufqckrsJzJqcHII5VUZLY2KlGfdVcu1vCRYgTNU3P9qH954SyVY2603dhhZeuUfyLhUq3KFR1z7vrep6aCkRm5TlWWyimimq5e8p83yTfd8pyFwXbHUUM5aFPCKMuoeD/R6Yd+Rsajn0PopbDJ65ISoS3wiUc9SjIZEiMUEdw/E8Ax8tl9YaYlFiFg1PLMJed4iMqziI1qY8nqhI20aJRmcslID0cTrP2lBY/6CiqcJ64A4r6YqnBZO/Omvu4BO2HChIutGq5uzRItJWk6/DKO/ka+QMm7D8xVHOr4lQAEqALRpAUuD29mCnCcjIoxNeZJYby0S23BMuv8iXrjNfrx7iL6rlGgax5IjficE=
